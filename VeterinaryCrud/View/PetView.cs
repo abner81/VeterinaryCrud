@@ -27,7 +27,6 @@ namespace VeterinaryCrud.View
             InitializeComponent();
             AssociateAndRaiseViewEvents();
             HiddenTabPageDetails();
-
         }
 
         private void HiddenTabPageDetails()
@@ -60,19 +59,25 @@ namespace VeterinaryCrud.View
 
             btnClose.Click += delegate { Close(); };
 
-            btnAddPet.Click += delegate { PrepareFor(AddNewEvent, "Add Pet"); };
+            btnAddPet.Click += delegate
+            {
+
+                PrepareFor(AddNewEvent, "Add Pet");
+            };
             btnEditPet.Click += delegate { PrepareFor(EditEvent, "Editar Pet"); };
             btnDeletePet.Click += delegate
             {
                 var result = MessageBox.Show("Tem certeza que deseja deletar o pet?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes) { DeleteEvent.Invoke(this, EventArgs.Empty); }
+                MessageBox.Show(Message);
             };
             btnSavePet.Click += delegate
             {
                 SaveEvent.Invoke(this, EventArgs.Empty);
                 Console.WriteLine(IsSuccessful);
-                var message = Message;
+
                 if (IsSuccessful) showTabPageList();
+                MessageBox.Show(Message);
             };
             btnCancelPet.Click += delegate
             {

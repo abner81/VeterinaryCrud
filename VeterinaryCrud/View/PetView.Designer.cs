@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label1 = new Label();
             panel1 = new Panel();
             btnClose = new Button();
@@ -112,7 +112,7 @@
             tabPageList.Controls.Add(txtSearchText);
             tabPageList.Location = new Point(4, 24);
             tabPageList.Name = "tabPageList";
-            tabPageList.Padding = new Padding(3, 3, 3, 3);
+            tabPageList.Padding = new Padding(3);
             tabPageList.Size = new Size(776, 347);
             tabPageList.TabIndex = 0;
             tabPageList.Text = "Lista";
@@ -124,14 +124,14 @@
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView.BackgroundColor = SystemColors.ButtonHighlight;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.GridColor = SystemColors.ControlLight;
             dataGridView.Location = new Point(13, 61);
             dataGridView.Name = "dataGridView";
@@ -221,7 +221,7 @@
             tabPageDetails.Controls.Add(txtPetName);
             tabPageDetails.Location = new Point(4, 24);
             tabPageDetails.Name = "tabPageDetails";
-            tabPageDetails.Padding = new Padding(3, 3, 3, 3);
+            tabPageDetails.Padding = new Padding(3);
             tabPageDetails.Size = new Size(776, 347);
             tabPageDetails.TabIndex = 1;
             tabPageDetails.Text = "Detalhes";
@@ -232,7 +232,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(19, 21);
+            label4.Location = new Point(22, 11);
             label4.Name = "label4";
             label4.Size = new Size(23, 19);
             label4.TabIndex = 9;
@@ -241,16 +241,18 @@
             // 
             // txtPetId
             // 
-            txtPetId.Location = new Point(19, 43);
+            txtPetId.Location = new Point(22, 33);
             txtPetId.Name = "txtPetId";
+            txtPetId.ReadOnly = true;
             txtPetId.Size = new Size(161, 23);
             txtPetId.TabIndex = 8;
+            txtPetId.Text = "0";
             txtPetId.TextChanged += textBox3_TextChanged;
             // 
             // btnCancelPet
             // 
             btnCancelPet.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCancelPet.Location = new Point(114, 222);
+            btnCancelPet.Location = new Point(117, 212);
             btnCancelPet.Name = "btnCancelPet";
             btnCancelPet.Size = new Size(80, 35);
             btnCancelPet.TabIndex = 7;
@@ -261,7 +263,7 @@
             // btnSavePet
             // 
             btnSavePet.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSavePet.Location = new Point(19, 222);
+            btnSavePet.Location = new Point(22, 212);
             btnSavePet.Name = "btnSavePet";
             btnSavePet.Size = new Size(80, 35);
             btnSavePet.TabIndex = 6;
@@ -273,7 +275,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(256, 87);
+            label5.Location = new Point(259, 77);
             label5.Name = "label5";
             label5.Size = new Size(35, 19);
             label5.TabIndex = 5;
@@ -281,7 +283,7 @@
             // 
             // txtPetType
             // 
-            txtPetType.Location = new Point(256, 109);
+            txtPetType.Location = new Point(259, 99);
             txtPetType.Name = "txtPetType";
             txtPetType.Size = new Size(161, 23);
             txtPetType.TabIndex = 4;
@@ -290,7 +292,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(19, 149);
+            label3.Location = new Point(22, 139);
             label3.Name = "label3";
             label3.Size = new Size(31, 19);
             label3.TabIndex = 3;
@@ -298,7 +300,7 @@
             // 
             // txtPetColor
             // 
-            txtPetColor.Location = new Point(19, 171);
+            txtPetColor.Location = new Point(22, 161);
             txtPetColor.Name = "txtPetColor";
             txtPetColor.Size = new Size(398, 23);
             txtPetColor.TabIndex = 2;
@@ -307,7 +309,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(19, 87);
+            label2.Location = new Point(22, 77);
             label2.Name = "label2";
             label2.Size = new Size(46, 19);
             label2.TabIndex = 1;
@@ -315,7 +317,7 @@
             // 
             // txtPetName
             // 
-            txtPetName.Location = new Point(19, 109);
+            txtPetName.Location = new Point(22, 99);
             txtPetName.Name = "txtPetName";
             txtPetName.Size = new Size(161, 23);
             txtPetName.TabIndex = 0;

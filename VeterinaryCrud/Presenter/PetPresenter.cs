@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VeterinaryCrud.Model;
 using VeterinaryCrud.View;
+using VeterinaryCrud.Presenter;
 
 namespace VeterinaryCrud.Presenter
 {
@@ -74,13 +75,13 @@ namespace VeterinaryCrud.Presenter
 
             try
             {
-                new Common.ModelDataValidation().Validate(pet);
+                new ModelDataValidation().Validate(pet);
                 if (view.IsEdit) repository.Edit(pet);
                 else repository.Add(pet);
 
                 view.Message = $"Pet {(view.IsEdit ? "editado" : "adicionado")} com sucesso!";
-                LoadAllPetList();
                 view.IsSuccessful = true;
+                LoadAllPetList();
                 CleanViewFields();
             }
             catch (Exception ex)
@@ -92,7 +93,8 @@ namespace VeterinaryCrud.Presenter
 
         private void AddPet(object sender, EventArgs e)
         {
-            CleanViewFields();
+            view.IsEdit = false;
+            view.Name = "";
         }
 
         private void CleanViewFields()
@@ -101,7 +103,7 @@ namespace VeterinaryCrud.Presenter
             view.IsSuccessful = false;
             view.Message = "";
 
-            view.Id = "";
+         view.Id = "";
             view.Name = "";
             view.Color = "";
             view.Type = "";
