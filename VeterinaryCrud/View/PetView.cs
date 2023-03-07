@@ -18,15 +18,16 @@ namespace VeterinaryCrud.View
         public string Type { get { return txtPetType.Text; } set { txtPetType.Text = value; } }
         public string Color { get { return txtPetColor.Text; } set { txtPetColor.Text = value; } }
         public string SearchValue { get { return txtSearchText.Text; } set { txtSearchText.Text = value; } }
-        public string IsEdit { get; set; }
-        public string IsSuccessful { get; set; }
+        public bool IsEdit { get; set; }
+        public bool IsSuccessful { get; set; }
         public string Message { get; set; }
 
         public PetView()
         {
             InitializeComponent();
             AssociateAndRaiseViewEvents();
-            this.HiddenTabPageDetails();
+            HiddenTabPageDetails();
+
         }
 
         private void HiddenTabPageDetails()
@@ -34,19 +35,61 @@ namespace VeterinaryCrud.View
             tabControl.TabPages.Remove(tabPageDetails);
         }
 
-        private void InvokeSearchEvent()
+        private void showTabPageList()
         {
-            SearchEvent?.Invoke(this, EventArgs.Empty);
+            tabControl.TabPages.Remove(tabPageDetails);
+            tabControl.TabPages.Add(tabPageList);
+        }
+        private void showTabPageDetails()
+        {
+            tabControl.TabPages.Remove(tabPageList);
+            tabControl.TabPages.Add(tabPageDetails);
+        }
+
+        private void PrepareFor(EventHandler eventHandler, string pageTitle)
+        {
+            eventHandler.Invoke(this, EventArgs.Empty);
+            showTabPageDetails();
+            tabPageDetails.Text = pageTitle;
         }
 
         private void AssociateAndRaiseViewEvents()
         {
             txtSearchText.Click += delegate { InvokeSearchEvent(); };
-            txtSearchText.KeyDown += (_, pressedKey) =>
+            txtSearchText.KeyDown += SearchOnPressEnterKey;
+
+            btnClose.Click += delegate { Close(); };
+
+            btnAddPet.Click += delegate { PrepareFor(AddNewEvent, "Add Pet"); };
+            btnEditPet.Click += delegate { PrepareFor(EditEvent, "Editar Pet"); };
+            btnDeletePet.Click += delegate
             {
-                bool pressEnterKey = pressedKey.KeyCode == Keys.Enter;
-                if (pressEnterKey) InvokeSearchEvent();
+                var result = MessageBox.Show("Tem certeza que deseja deletar o pet?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes) { DeleteEvent.Invoke(this, EventArgs.Empty); }
             };
+            btnSavePet.Click += delegate
+            {
+                SaveEvent.Invoke(this, EventArgs.Empty);
+                Console.WriteLine(IsSuccessful);
+                var message = Message;
+                if (IsSuccessful) showTabPageList();
+            };
+            btnCancelPet.Click += delegate
+            {
+                CancelEvent.Invoke(this, EventArgs.Empty);
+                showTabPageList();
+            };
+
+        }
+
+        private void SearchOnPressEnterKey(object _, KeyEventArgs pressedKey)
+        {
+            bool pressEnterKey = pressedKey.KeyCode == Keys.Enter;
+            if (pressEnterKey) InvokeSearchEvent();
+        }
+        private void InvokeSearchEvent()
+        {
+            SearchEvent?.Invoke(this, EventArgs.Empty);
         }
 
         public event EventHandler SearchEvent;
@@ -90,6 +133,44 @@ namespace VeterinaryCrud.View
         }
 
         private void button4_Click(object sender, EventArgs e)
+        {
+        }
+
+        private static void fitWindow(PetView instance)
+        {
+            bool windowMinimized = instance.WindowState == FormWindowState.Minimized;
+            void normalizeWindow() => instance.WindowState = FormWindowState.Normal;
+            if (windowMinimized) normalizeWindow();
+            instance.BringToFront();
+        }
+
+        private static PetView instance;
+        public static PetView GetInstance(Form parentContainer)
+        {
+            void styleView(PetView instance)
+            {
+                instance.MdiParent = parentContainer;
+                instance.FormBorderStyle = FormBorderStyle.None;
+                instance.Dock = DockStyle.Fill;
+            }
+
+            bool notExistInstance = instance == null || instance.IsDisposed;
+            if (notExistInstance)
+            {
+                instance = new PetView();
+                styleView(instance);
+            }
+            else fitWindow(instance);
+
+            return instance;
+        }
+
+        private void tabPageDetails_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSavePet_Click(object sender, EventArgs e)
         {
         }
     }

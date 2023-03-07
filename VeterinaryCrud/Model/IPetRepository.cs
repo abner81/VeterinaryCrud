@@ -8,7 +8,7 @@ namespace VeterinaryCrud.Model
 {
     public interface IPetRepository
     {
-         void Add(Pet pet);
+        void Add(Pet pet);
         void Edit(Pet pet);
         void Delete(int id);
         IEnumerable<Pet> GetAll();

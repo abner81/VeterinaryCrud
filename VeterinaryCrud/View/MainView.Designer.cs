@@ -38,26 +38,30 @@
             panel1.Controls.Add(btnPets);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(2, 1, 2, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(335, 738);
+            panel1.Size = new Size(180, 346);
             panel1.TabIndex = 0;
             // 
             // btnPets
             // 
             btnPets.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnPets.Location = new Point(3, 122);
+            btnPets.Location = new Point(2, 57);
+            btnPets.Margin = new Padding(2, 1, 2, 1);
             btnPets.Name = "btnPets";
-            btnPets.Size = new Size(332, 58);
+            btnPets.Size = new Size(179, 27);
             btnPets.TabIndex = 0;
             btnPets.Text = "Pets";
             btnPets.UseVisualStyleBackColor = true;
             // 
             // MainView
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1201, 738);
+            ClientSize = new Size(647, 346);
             Controls.Add(panel1);
+            IsMdiContainer = true;
+            Margin = new Padding(2, 1, 2, 1);
             Name = "MainView";
             Text = "MainView";
             panel1.ResumeLayout(false);

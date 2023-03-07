@@ -16,8 +16,8 @@ namespace VeterinaryCrud.View
 
         //States
         string SearchValue { get; set; }
-        string IsEdit { get; set; }
-        string IsSuccessful { get; set; }
+        bool IsEdit { get; set; }
+        bool IsSuccessful { get; set; }
         string Message { get; set; }
 
         //Events

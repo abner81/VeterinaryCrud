@@ -15,9 +15,9 @@ namespace VeterinaryCrud
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            var view = new PetView();
-            new PetPresenter(view, new PetRepository());
-            Application.Run(view);
+            var mainView = new MainView();
+            new MainPresenter(mainView);
+            Application.Run(mainView);
         }
     }
 }
